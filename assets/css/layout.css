@@ -1,0 +1,133 @@
+/* =============================================================================
+   layout.css
+   Grid, flex, and structural layout only.
+   No visual styles (color, border, shadow). All spacing from tokens.css.
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   Page Shell
+   --------------------------------------------------------------------------- */
+
+.dds-shell {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "hero"
+    "main"
+    "footer";
+  min-height: 100vh;
+}
+
+.dds-shell__header { grid-area: header; }
+.dds-shell__hero   { grid-area: hero;   }
+.dds-shell__main   { grid-area: main;   }
+.dds-shell__footer { grid-area: footer; }
+
+
+/* ---------------------------------------------------------------------------
+   Main Content Area — with optional sidebar
+   --------------------------------------------------------------------------- */
+
+.dds-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: "content";
+  width: 100%;
+  max-width: var(--primitive-bp-wide);
+  margin-inline: auto;
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.dds-main--with-sidebar {
+  grid-template-columns: 240px 1fr;
+  grid-template-areas: "sidebar content";
+  gap: var(--spacing-xl);
+}
+
+.dds-main__sidebar { grid-area: sidebar; }
+.dds-main__content { grid-area: content; }
+
+
+/* ---------------------------------------------------------------------------
+   Container
+   --------------------------------------------------------------------------- */
+
+.dds-container {
+  width: 100%;
+  max-width: var(--primitive-bp-desktop);
+  margin-inline: auto;
+  padding-inline: var(--spacing-lg);
+}
+
+.dds-container--wide {
+  max-width: var(--primitive-bp-wide);
+}
+
+.dds-container--narrow {
+  max-width: var(--primitive-bp-tablet);
+}
+
+
+/* ---------------------------------------------------------------------------
+   Flex utilities
+   --------------------------------------------------------------------------- */
+
+.flex        { display: flex; }
+.flex-col    { flex-direction: column; }
+.flex-wrap   { flex-wrap: wrap; }
+.items-start { align-items: flex-start; }
+.items-center { align-items: center; }
+.items-end   { align-items: flex-end; }
+.justify-start  { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end    { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.gap-xs  { gap: var(--spacing-xs); }
+.gap-sm  { gap: var(--spacing-sm); }
+.gap-md  { gap: var(--spacing-md); }
+.gap-lg  { gap: var(--spacing-lg); }
+.gap-xl  { gap: var(--spacing-xl); }
+
+
+/* ---------------------------------------------------------------------------
+   Grid utilities
+   --------------------------------------------------------------------------- */
+
+.grid { display: grid; }
+
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+
+/* ---------------------------------------------------------------------------
+   Spacing utilities
+   --------------------------------------------------------------------------- */
+
+.p-xs  { padding: var(--spacing-xs); }
+.p-sm  { padding: var(--spacing-sm); }
+.p-md  { padding: var(--spacing-md); }
+.p-lg  { padding: var(--spacing-lg); }
+.p-xl  { padding: var(--spacing-xl); }
+.p-xxl { padding: var(--spacing-xxl); }
+
+.m-xs  { margin: var(--spacing-xs); }
+.m-sm  { margin: var(--spacing-sm); }
+.m-md  { margin: var(--spacing-md); }
+.m-lg  { margin: var(--spacing-lg); }
+.m-xl  { margin: var(--spacing-xl); }
+
+.mt-xs  { margin-top: var(--spacing-xs); }
+.mt-sm  { margin-top: var(--spacing-sm); }
+.mt-md  { margin-top: var(--spacing-md); }
+.mt-lg  { margin-top: var(--spacing-lg); }
+.mt-xl  { margin-top: var(--spacing-xl); }
+.mt-xxl { margin-top: var(--spacing-xxl); }
+
+.mb-xs  { margin-bottom: var(--spacing-xs); }
+.mb-sm  { margin-bottom: var(--spacing-sm); }
+.mb-md  { margin-bottom: var(--spacing-md); }
+.mb-lg  { margin-bottom: var(--spacing-lg); }
+.mb-xl  { margin-bottom: var(--spacing-xl); }
+.mb-xxl { margin-bottom: var(--spacing-xxl); }

@@ -1,0 +1,324 @@
+/* =============================================================================
+   tokens.css
+   Design Tokens — Single Source of Truth for all visual decisions.
+   Only CSS custom properties. No classes. No selectors beyond :root.
+   ============================================================================= */
+
+:root {
+
+  /* ===========================================================================
+     PRIMITIVE TOKENS
+     Raw values. Never reference directly in components — use Semantic Tokens.
+     =========================================================================== */
+
+  /* ---------------------------------------------------------------------------
+     Colors
+     --------------------------------------------------------------------------- */
+  --primitive-blue-600:   #2563EB;
+  --primitive-green-600:  #16A34A;
+  --primitive-orange-600: #D97706;
+  --primitive-red-600:    #DC2626;
+  --primitive-gray-900:   #111827;
+  --primitive-gray-600:   #4B5563;
+  --primitive-gray-300:   #D1D5DB;
+  --primitive-gray-100:   #F3F4F6;
+  --primitive-white:      #FFFFFF;
+  --primitive-black:      #000000;
+
+  /* ---------------------------------------------------------------------------
+     Typography
+     --------------------------------------------------------------------------- */
+
+  /* Font Family */
+  --primitive-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --primitive-font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Font Sizes */
+  --primitive-font-size-display: 3rem;      /* 48px */
+  --primitive-font-size-h1:      2.25rem;   /* 36px */
+  --primitive-font-size-h2:      1.875rem;  /* 30px */
+  --primitive-font-size-h3:      1.5rem;    /* 24px */
+  --primitive-font-size-h4:      1.25rem;   /* 20px */
+  --primitive-font-size-body:    1rem;      /* 16px */
+  --primitive-font-size-small:   0.875rem;  /* 14px */
+  --primitive-font-size-caption: 0.75rem;   /* 12px */
+
+  /* Font Weights */
+  --primitive-font-weight-regular:  400;
+  --primitive-font-weight-medium:   500;
+  --primitive-font-weight-semibold: 600;
+  --primitive-font-weight-bold:     700;
+
+  /* Line Heights */
+  --primitive-line-height-none:    1;
+  --primitive-line-height-tight:   1.25;
+  --primitive-line-height-snug:    1.375;
+  --primitive-line-height-normal:  1.5;
+  --primitive-line-height-relaxed: 1.625;
+  --primitive-line-height-loose:   2;
+
+  /* Letter Spacing */
+  --primitive-letter-spacing-tighter: -0.05em;
+  --primitive-letter-spacing-tight:   -0.025em;
+  --primitive-letter-spacing-normal:   0em;
+  --primitive-letter-spacing-wide:     0.025em;
+  --primitive-letter-spacing-wider:    0.05em;
+  --primitive-letter-spacing-widest:   0.1em;
+
+  /* ---------------------------------------------------------------------------
+     Spacing — base-8 scale
+     --------------------------------------------------------------------------- */
+  --primitive-space-xs:   0.25rem;  /* 4px  */
+  --primitive-space-sm:   0.5rem;   /* 8px  */
+  --primitive-space-md:   1rem;     /* 16px */
+  --primitive-space-lg:   1.5rem;   /* 24px */
+  --primitive-space-xl:   2rem;     /* 32px */
+  --primitive-space-xxl:  3rem;     /* 48px */
+  --primitive-space-xxxl: 4rem;     /* 64px */
+
+  /* ---------------------------------------------------------------------------
+     Sizing
+     --------------------------------------------------------------------------- */
+
+  /* Icons */
+  --primitive-size-icon-xs: 12px;
+  --primitive-size-icon-sm: 16px;
+  --primitive-size-icon-md: 20px;
+  --primitive-size-icon-lg: 24px;
+  --primitive-size-icon-xl: 32px;
+
+  /* Avatars */
+  --primitive-size-avatar-sm: 24px;
+  --primitive-size-avatar-md: 32px;
+  --primitive-size-avatar-lg: 48px;
+
+  /* Containers */
+  --primitive-size-container-sm: 640px;
+  --primitive-size-container-md: 768px;
+  --primitive-size-container-lg: 1024px;
+  --primitive-size-container-xl: 1280px;
+
+  /* ---------------------------------------------------------------------------
+     Radius
+     --------------------------------------------------------------------------- */
+  --primitive-radius-none: 0;
+  --primitive-radius-sm:   0.25rem;  /* 4px  */
+  --primitive-radius-md:   0.5rem;   /* 8px  */
+  --primitive-radius-lg:   0.75rem;  /* 12px */
+  --primitive-radius-xl:   1rem;     /* 16px */
+  --primitive-radius-full: 9999px;
+
+  /* ---------------------------------------------------------------------------
+     Borders
+     --------------------------------------------------------------------------- */
+  --primitive-border-thin:    1px;
+  --primitive-border-default: 2px;
+  --primitive-border-thick:   3px;
+
+  /* ---------------------------------------------------------------------------
+     Elevation — raw shadow values
+     --------------------------------------------------------------------------- */
+  --primitive-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --primitive-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --primitive-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.10), 0 4px 6px rgba(0, 0, 0, 0.05);
+
+  /* ---------------------------------------------------------------------------
+     Opacity
+     --------------------------------------------------------------------------- */
+  --primitive-opacity-0:   0;
+  --primitive-opacity-40:  0.4;
+  --primitive-opacity-60:  0.6;
+  --primitive-opacity-80:  0.8;
+  --primitive-opacity-100: 1;
+
+  /* ---------------------------------------------------------------------------
+     Motion
+     --------------------------------------------------------------------------- */
+
+  /* Durations */
+  --primitive-motion-fast:   100ms;
+  --primitive-motion-normal: 200ms;
+  --primitive-motion-slow:   300ms;
+
+  /* Easing */
+  --primitive-easing-linear:      linear;
+  --primitive-easing-ease:        ease;
+  --primitive-easing-ease-in:     ease-in;
+  --primitive-easing-ease-out:    ease-out;
+  --primitive-easing-ease-in-out: ease-in-out;
+
+  /* ---------------------------------------------------------------------------
+     Breakpoints
+     --------------------------------------------------------------------------- */
+  --primitive-bp-mobile:  480px;
+  --primitive-bp-tablet:  768px;
+  --primitive-bp-desktop: 1280px;
+  --primitive-bp-wide:    1600px;
+
+  /* ---------------------------------------------------------------------------
+     Z-Index
+     --------------------------------------------------------------------------- */
+  --primitive-z-0:   0;
+  --primitive-z-10:  10;
+  --primitive-z-100: 100;
+  --primitive-z-200: 200;
+  --primitive-z-999: 999;
+
+
+  /* ===========================================================================
+     SEMANTIC TOKENS
+     Assign meaning to primitives. Components must reference only these.
+     =========================================================================== */
+
+  /* ---------------------------------------------------------------------------
+     Colors
+     --------------------------------------------------------------------------- */
+  --color-primary: var(--primitive-blue-600);
+  --color-success: var(--primitive-green-600);
+  --color-warning: var(--primitive-orange-600);
+  --color-error:   var(--primitive-red-600);
+
+  /* ---------------------------------------------------------------------------
+     Background
+     --------------------------------------------------------------------------- */
+  --background-default: var(--primitive-white);
+  --background-surface: var(--primitive-gray-100);
+  --background-muted:   var(--primitive-gray-300);
+
+  /* ---------------------------------------------------------------------------
+     Border
+     --------------------------------------------------------------------------- */
+  --border-color-default: var(--primitive-gray-300);
+  --border-color-strong:  var(--primitive-gray-600);
+  --border-color-accent:  var(--primitive-blue-600);
+
+  --border-width-thin:    var(--primitive-border-thin);
+  --border-width-default: var(--primitive-border-default);
+  --border-width-thick:   var(--primitive-border-thick);
+
+  /* ---------------------------------------------------------------------------
+     Text
+     --------------------------------------------------------------------------- */
+  --text-primary:   var(--primitive-gray-900);
+  --text-secondary: var(--primitive-gray-600);
+  --text-muted:     var(--primitive-gray-300);
+  --text-inverse:   var(--primitive-white);
+  --text-accent:    var(--primitive-blue-600);
+  --text-success:   var(--primitive-green-600);
+  --text-warning:   var(--primitive-orange-600);
+  --text-error:     var(--primitive-red-600);
+
+  /* ---------------------------------------------------------------------------
+     Typography
+     --------------------------------------------------------------------------- */
+  --font-family:      var(--primitive-font-family-base);
+  --font-family-mono: var(--primitive-font-family-mono);
+
+  /* Font Sizes */
+  --font-size-display: var(--primitive-font-size-display);
+  --font-size-h1:      var(--primitive-font-size-h1);
+  --font-size-h2:      var(--primitive-font-size-h2);
+  --font-size-h3:      var(--primitive-font-size-h3);
+  --font-size-h4:      var(--primitive-font-size-h4);
+  --font-size-body:    var(--primitive-font-size-body);
+  --font-size-small:   var(--primitive-font-size-small);
+  --font-size-caption: var(--primitive-font-size-caption);
+
+  /* Font Weights */
+  --font-weight-regular:  var(--primitive-font-weight-regular);
+  --font-weight-medium:   var(--primitive-font-weight-medium);
+  --font-weight-semibold: var(--primitive-font-weight-semibold);
+  --font-weight-bold:     var(--primitive-font-weight-bold);
+
+  /* Line Heights */
+  --line-height-none:    var(--primitive-line-height-none);
+  --line-height-tight:   var(--primitive-line-height-tight);
+  --line-height-snug:    var(--primitive-line-height-snug);
+  --line-height-normal:  var(--primitive-line-height-normal);
+  --line-height-relaxed: var(--primitive-line-height-relaxed);
+  --line-height-loose:   var(--primitive-line-height-loose);
+
+  /* Letter Spacing */
+  --letter-spacing-tighter: var(--primitive-letter-spacing-tighter);
+  --letter-spacing-tight:   var(--primitive-letter-spacing-tight);
+  --letter-spacing-normal:  var(--primitive-letter-spacing-normal);
+  --letter-spacing-wide:    var(--primitive-letter-spacing-wide);
+  --letter-spacing-wider:   var(--primitive-letter-spacing-wider);
+  --letter-spacing-widest:  var(--primitive-letter-spacing-widest);
+
+  /* ---------------------------------------------------------------------------
+     Spacing
+     --------------------------------------------------------------------------- */
+  --spacing-xs:   var(--primitive-space-xs);
+  --spacing-sm:   var(--primitive-space-sm);
+  --spacing-md:   var(--primitive-space-md);
+  --spacing-lg:   var(--primitive-space-lg);
+  --spacing-xl:   var(--primitive-space-xl);
+  --spacing-xxl:  var(--primitive-space-xxl);
+  --spacing-xxxl: var(--primitive-space-xxxl);
+
+  /* ---------------------------------------------------------------------------
+     Sizing
+     --------------------------------------------------------------------------- */
+  --size-icon-xs: var(--primitive-size-icon-xs);
+  --size-icon-sm: var(--primitive-size-icon-sm);
+  --size-icon-md: var(--primitive-size-icon-md);
+  --size-icon-lg: var(--primitive-size-icon-lg);
+  --size-icon-xl: var(--primitive-size-icon-xl);
+
+  --size-avatar-sm: var(--primitive-size-avatar-sm);
+  --size-avatar-md: var(--primitive-size-avatar-md);
+  --size-avatar-lg: var(--primitive-size-avatar-lg);
+
+  --size-container-sm: var(--primitive-size-container-sm);
+  --size-container-md: var(--primitive-size-container-md);
+  --size-container-lg: var(--primitive-size-container-lg);
+  --size-container-xl: var(--primitive-size-container-xl);
+
+  /* ---------------------------------------------------------------------------
+     Radius
+     --------------------------------------------------------------------------- */
+  --radius-none: var(--primitive-radius-none);
+  --radius-sm:   var(--primitive-radius-sm);
+  --radius-md:   var(--primitive-radius-md);
+  --radius-lg:   var(--primitive-radius-lg);
+  --radius-xl:   var(--primitive-radius-xl);
+  --radius-full: var(--primitive-radius-full);
+
+  /* ---------------------------------------------------------------------------
+     Elevation
+     --------------------------------------------------------------------------- */
+  --elevation-none: none;
+  --elevation-sm:   var(--primitive-shadow-sm);
+  --elevation-md:   var(--primitive-shadow-md);
+  --elevation-lg:   var(--primitive-shadow-lg);
+
+  /* ---------------------------------------------------------------------------
+     Opacity
+     --------------------------------------------------------------------------- */
+  --opacity-disabled: var(--primitive-opacity-40);
+  --opacity-muted:    var(--primitive-opacity-60);
+  --opacity-subtle:   var(--primitive-opacity-80);
+  --opacity-full:     var(--primitive-opacity-100);
+
+  /* ---------------------------------------------------------------------------
+     Motion
+     --------------------------------------------------------------------------- */
+  --motion-fast:   var(--primitive-motion-fast);
+  --motion-normal: var(--primitive-motion-normal);
+  --motion-slow:   var(--primitive-motion-slow);
+
+  --motion-easing-default: var(--primitive-easing-ease-in-out);
+  --motion-easing-enter:   var(--primitive-easing-ease-out);
+  --motion-easing-exit:    var(--primitive-easing-ease-in);
+
+  /* ---------------------------------------------------------------------------
+     Z-Index
+     --------------------------------------------------------------------------- */
+  --z-base:    var(--primitive-z-0);
+  --z-raised:  var(--primitive-z-10);
+  --z-overlay: var(--primitive-z-100);
+  --z-modal:   var(--primitive-z-200);
+  --z-top:     var(--primitive-z-999);
+
+}

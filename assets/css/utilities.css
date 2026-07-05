@@ -1,0 +1,120 @@
+/* =============================================================================
+   utilities.css
+   Single-purpose utility classes. No layout (→ layout.css), no components.
+   Naming: dds-u-[property]-[value] for DDS-scoped, or shorthand for common cases.
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   Display
+   --------------------------------------------------------------------------- */
+
+.hidden         { display: none; }
+.block          { display: block; }
+.inline         { display: inline; }
+.inline-block   { display: inline-block; }
+.inline-flex    { display: inline-flex; }
+
+
+/* ---------------------------------------------------------------------------
+   Overflow
+   --------------------------------------------------------------------------- */
+
+.overflow-hidden { overflow: hidden; }
+.overflow-auto   { overflow: auto; }
+
+
+/* ---------------------------------------------------------------------------
+   Position
+   --------------------------------------------------------------------------- */
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.sticky   { position: sticky; }
+
+
+/* ---------------------------------------------------------------------------
+   Width / Height
+   --------------------------------------------------------------------------- */
+
+.w-full  { width: 100%; }
+.h-full  { height: 100%; }
+.w-auto  { width: auto; }
+
+
+/* ---------------------------------------------------------------------------
+   Text alignment
+   --------------------------------------------------------------------------- */
+
+.text-left   { text-align: left; }
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+
+
+/* ---------------------------------------------------------------------------
+   Background
+   --------------------------------------------------------------------------- */
+
+.bg-default  { background-color: var(--background-default); }
+.bg-surface  { background-color: var(--background-surface); }
+.bg-primary  { background-color: var(--color-primary); }
+.bg-success  { background-color: var(--color-success); }
+.bg-warning  { background-color: var(--color-warning); }
+.bg-error    { background-color: var(--color-error); }
+
+
+/* ---------------------------------------------------------------------------
+   Border
+   --------------------------------------------------------------------------- */
+
+.border         { border: var(--border-thin) solid var(--border-default); }
+.border-primary { border-color: var(--color-primary); }
+.border-success { border-color: var(--color-success); }
+.border-warning { border-color: var(--color-warning); }
+.border-error   { border-color: var(--color-error); }
+.rounded-sm     { border-radius: var(--radius-small); }
+.rounded-md     { border-radius: var(--radius-medium); }
+.rounded-lg     { border-radius: var(--radius-large); }
+
+
+/* ---------------------------------------------------------------------------
+   Elevation
+   --------------------------------------------------------------------------- */
+
+.shadow-sm { box-shadow: var(--elevation-small);  }
+.shadow-md { box-shadow: var(--elevation-medium); }
+.shadow-lg { box-shadow: var(--elevation-large);  }
+.shadow-none { box-shadow: var(--elevation-none); }
+
+
+/* ---------------------------------------------------------------------------
+   Opacity
+   --------------------------------------------------------------------------- */
+
+.opacity-disabled { opacity: var(--opacity-disabled); }
+.opacity-muted    { opacity: var(--opacity-muted); }
+
+
+/* ---------------------------------------------------------------------------
+   Transition
+   --------------------------------------------------------------------------- */
+
+.transition-fast   { transition: all var(--motion-fast)   ease; }
+.transition-normal { transition: all var(--motion-normal) ease; }
+.transition-slow   { transition: all var(--motion-slow)   ease; }
+
+
+/* ---------------------------------------------------------------------------
+   Accessibility
+   --------------------------------------------------------------------------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

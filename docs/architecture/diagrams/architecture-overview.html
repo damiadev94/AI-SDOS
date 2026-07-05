@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Architecture Overview — high-level building blocks of AI-SDOS, external actors, and primary information flow.">
+  <title>Architecture Overview — AI-SDOS</title>
+
+  <link rel="stylesheet" href="../../../assets/css/reset.css">
+  <link rel="stylesheet" href="../../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../../assets/css/typography.css">
+  <link rel="stylesheet" href="../../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../../assets/css/components.css">
+  <link rel="stylesheet" href="../../../assets/css/diagrams.css">
+  <link rel="stylesheet" href="../../../assets/css/utilities.css">
+  <link rel="stylesheet" href="../../../assets/css/print.css" media="print">
+</head>
+<body class="bg-default">
+  <div class="dds-shell">
+
+    <!-- HEADER -->
+    <div class="dds-shell__header">
+      <header class="dds-header" role="banner">
+        <a href="/" class="dds-header__brand">AI-SDOS</a>
+        <nav class="dds-header__nav" aria-label="Primary navigation">
+          <a href="#" class="dds-header__nav-link" aria-current="page">Architecture</a>
+          <a href="#" class="dds-header__nav-link">Documentation</a>
+        </nav>
+      </header>
+    </div>
+
+    <!-- HERO -->
+    <div class="dds-shell__hero p-xl">
+      <div class="dds-hero">
+        <h1 class="dds-hero__title">Architecture Overview</h1>
+        <p class="dds-hero__description text-body text-secondary mt-sm">
+          High-level building blocks of AI-SDOS, external actors, and the primary information flow between them. Companion diagram to <code>docs/architecture/architecture-overview.md</code>.
+        </p>
+        <div class="dds-hero__meta mt-md">
+          <span class="dds-badge dds-badge--primary">Architecture Overview</span>
+          <span class="dds-badge dds-badge--neutral">v0.1</span>
+          <span class="dds-badge dds-badge--neutral">2026-07-05</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="dds-shell__main">
+      <div class="dds-main">
+        <main class="dds-main__content" role="main" id="main-content">
+
+          <!-- DIAGRAM PANEL -->
+          <section id="diagram-panel">
+            <article class="dds-card dds-diagram-panel">
+              <header class="dds-diagram-panel__header">
+                <h2 class="text-h4">Architecture Overview</h2>
+                <span class="dds-badge dds-badge--neutral">Structural + Information Flow</span>
+              </header>
+
+              <div class="dds-diagram-panel__body mt-md">
+                <div class="dds-diagram">
+                  <div class="dds-diagram__canvas" style="position:relative; min-height:560px; padding:var(--spacing-md);">
+
+                    <!-- External actor: Human Stakeholders -->
+                    <div class="dds-node" style="position:absolute; top:20px; left:30px; width:170px;">
+                      <span class="dds-node__label">Human Stakeholders</span>
+                      <span class="dds-node__description">External Actor</span>
+                    </div>
+
+                    <!-- Human Layer -->
+                    <div class="dds-node dds-node--primary" style="position:absolute; top:140px; left:30px; width:170px;">
+                      <span class="dds-node__label">Human Layer</span>
+                      <span class="dds-node__description">Layer</span>
+                    </div>
+
+                    <!-- Knowledge Layer (central) -->
+                    <div class="dds-node dds-node--primary" style="position:absolute; top:140px; left:260px; width:190px;">
+                      <span class="dds-node__label">Knowledge Layer</span>
+                      <span class="dds-node__description">Layer — source of truth</span>
+                    </div>
+
+                    <!-- Orchestration Layer -->
+                    <div class="dds-node" style="position:absolute; top:140px; left:510px; width:170px;">
+                      <span class="dds-node__label">Orchestration Layer</span>
+                      <span class="dds-node__description">Layer</span>
+                    </div>
+
+                    <!-- AI Agent Layer -->
+                    <div class="dds-node" style="position:absolute; top:140px; left:740px; width:170px;">
+                      <span class="dds-node__label">AI Agent Layer</span>
+                      <span class="dds-node__description">Layer</span>
+                    </div>
+
+                    <!-- Tool Integration Layer -->
+                    <div class="dds-node" style="position:absolute; top:300px; left:510px; width:170px;">
+                      <span class="dds-node__label">Tool Integration Layer</span>
+                      <span class="dds-node__description">Layer</span>
+                    </div>
+
+                    <!-- Execution Layer -->
+                    <div class="dds-node" style="position:absolute; top:300px; left:740px; width:170px;">
+                      <span class="dds-node__label">Execution Layer</span>
+                      <span class="dds-node__description">Layer</span>
+                    </div>
+
+                    <!-- External actor: External Systems -->
+                    <div class="dds-node" style="position:absolute; top:300px; left:960px; width:190px;">
+                      <span class="dds-node__label">External Systems</span>
+                      <span class="dds-node__description">External Systems</span>
+                    </div>
+
+                    <!-- Governance Layer: cross-cutting band -->
+                    <div class="dds-group" style="position:absolute; top:410px; left:30px; width:1120px;">
+                      <span class="dds-group__label">Governance Layer — cross-cutting</span>
+                      <div class="dds-group__content">
+                        <span class="text-small text-secondary">Applies across every other layer: policy enforcement, documentation standards, architectural consistency, specification validation, review workflows, approval gates, auditability.</span>
+                      </div>
+                    </div>
+
+                    <svg class="dds-diagram__svg" aria-hidden="true">
+                      <defs>
+                        <marker id="arrow-ov" viewBox="0 0 10 10" refX="8" refY="5"
+                                markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                          <path class="dds-arrow" d="M0,0 L10,5 L0,10 z"></path>
+                        </marker>
+                        <marker id="arrow-ov-primary" viewBox="0 0 10 10" refX="8" refY="5"
+                                markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                          <path class="dds-arrow dds-arrow--primary" d="M0,0 L10,5 L0,10 z"></path>
+                        </marker>
+                      </defs>
+
+                      <!-- 1. Human Stakeholders -> Human Layer -->
+                      <path class="dds-connector dds-connector--primary" d="M 115,76 L 115,140" marker-end="url(#arrow-ov-primary)"/>
+
+                      <!-- 2. Human Layer -> Knowledge Layer (define objectives) -->
+                      <path class="dds-connector dds-connector--primary" d="M 200,175 L 260,175" marker-end="url(#arrow-ov-primary)"/>
+
+                      <!-- 3. Knowledge Layer -> Orchestration Layer (creates workflows/tasks) -->
+                      <path class="dds-connector" d="M 450,175 L 510,175" marker-end="url(#arrow-ov)"/>
+
+                      <!-- 4. Orchestration Layer -> AI Agent Layer (assigns tasks) -->
+                      <path class="dds-connector" d="M 680,175 L 740,175" marker-end="url(#arrow-ov)"/>
+
+                      <!-- 5. AI Agent Layer -> Tool Integration Layer (reaches external tools) -->
+                      <path class="dds-connector dds-connector--dashed" d="M 800,196 L 620,300" marker-end="url(#arrow-ov)"/>
+
+                      <!-- 6. AI Agent Layer -> Execution Layer (executes responsibilities) -->
+                      <path class="dds-connector" d="M 825,196 L 825,300" marker-end="url(#arrow-ov)"/>
+
+                      <!-- 7. Tool Integration Layer -> External Systems -->
+                      <path class="dds-connector dds-connector--dashed" d="M 680,335 L 960,335" marker-end="url(#arrow-ov)"/>
+
+                      <!-- 8. Execution Layer -> Knowledge Layer (approved outputs become part of Knowledge) -->
+                      <path class="dds-connector dds-connector--primary" d="M 800,300 C 700,230 550,196 355,196" marker-end="url(#arrow-ov-primary)"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <aside class="dds-diagram-panel__legend mt-md" aria-label="Diagram legend">
+                <aside class="dds-legend">
+                  <div class="dds-legend__item">
+                    <span class="dds-legend__swatch bg-primary"></span>
+                    <span class="text-small">Knowledge-centric relationship (objectives in / approved outputs back)</span>
+                  </div>
+                  <div class="dds-legend__item">
+                    <span class="dds-legend__swatch border"></span>
+                    <span class="text-small">Layer / External Actor</span>
+                  </div>
+                  <div class="dds-legend__item">
+                    <span class="dds-legend__swatch border" style="border-style:dashed;"></span>
+                    <span class="text-small">Reaches outside the platform via Tool Integration Layer</span>
+                  </div>
+                </aside>
+              </aside>
+
+              <footer class="dds-diagram-panel__notes mt-md">
+                <p class="text-small text-secondary">
+                  Numbered relationships follow the Information Flow described in SYSTEM_ARCHITECTURE.md and ARCHITECTURE_OVERVIEW.md: Human Layer defines objectives → Knowledge Layer → Orchestration Layer creates workflows → AI Agent Layer executes, reaching External Systems through the Tool Integration Layer → Execution Layer validates → approved outputs return to the Knowledge Layer. The Governance Layer is cross-cutting and applies to every step.
+                </p>
+              </footer>
+            </article>
+          </section>
+
+          <!-- NOTES -->
+          <section id="notes" class="mt-xl">
+            <div class="dds-section-header">
+              <h2 class="text-h2">Notes</h2>
+              <hr class="dds-divider mt-sm">
+            </div>
+            <article class="dds-card mt-md">
+              <div class="dds-card__body">
+                <p class="text-body text-secondary">
+                  This diagram is the visual companion to <code>docs/architecture/architecture-overview.md</code> (Section 9). It shows only the seven architectural layers defined in SYSTEM_ARCHITECTURE.md, the external actors defined in DOMAIN_DISCOVERY.md, and the primary relationships between them. No implementation detail, API, database schema, or deployment concern is represented, per the Diagram Requirements of TASK-ARCH-001 and diagram-rules.md.
+                </p>
+              </div>
+            </article>
+          </section>
+
+        </main>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="dds-shell__footer">
+      <footer class="dds-footer" role="contentinfo">
+        <span class="dds-footer__meta">AI-SDOS — v0.1</span>
+        <span class="dds-footer__info">2026</span>
+      </footer>
+    </div>
+
+  </div>
+</body>
+</html>

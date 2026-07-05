@@ -1,0 +1,255 @@
+/* =============================================================================
+   components.css
+   Base visual styles for UI components.
+   Depends on tokens.css. No layout — that lives in layout.css.
+   Component tokens are defined inline here until a component-tokens layer is warranted.
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   Card
+   --------------------------------------------------------------------------- */
+
+.dds-card {
+  background-color: var(--background-surface);
+  border: var(--border-thin) solid var(--border-default);
+  border-radius: var(--radius-medium);
+  box-shadow: var(--elevation-small);
+  padding: var(--spacing-lg);
+}
+
+
+/* ---------------------------------------------------------------------------
+   Badge
+   --------------------------------------------------------------------------- */
+
+.dds-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-small);
+  line-height: 1;
+}
+
+.dds-badge--primary {
+  background-color: var(--color-primary);
+  color: var(--text-inverse);
+}
+
+.dds-badge--success {
+  background-color: var(--color-success);
+  color: var(--text-inverse);
+}
+
+.dds-badge--warning {
+  background-color: var(--color-warning);
+  color: var(--text-inverse);
+}
+
+.dds-badge--error {
+  background-color: var(--color-error);
+  color: var(--text-inverse);
+}
+
+.dds-badge--neutral {
+  background-color: var(--background-surface);
+  color: var(--text-secondary);
+  border: var(--border-thin) solid var(--border-default);
+}
+
+
+/* ---------------------------------------------------------------------------
+   Divider
+   --------------------------------------------------------------------------- */
+
+.dds-divider {
+  border: none;
+  border-top: var(--border-thin) solid var(--border-default);
+  margin-block: var(--spacing-lg);
+}
+
+.dds-divider--thick {
+  border-top-width: var(--border-default-width);
+}
+
+
+/* ---------------------------------------------------------------------------
+   Legend
+   --------------------------------------------------------------------------- */
+
+.dds-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: var(--border-thin) solid var(--border-default);
+  border-radius: var(--radius-small);
+  background-color: var(--background-surface);
+}
+
+.dds-legend__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-small);
+  color: var(--text-secondary);
+}
+
+.dds-legend__swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-small);
+  flex-shrink: 0;
+}
+
+
+/* ---------------------------------------------------------------------------
+   Header
+   --------------------------------------------------------------------------- */
+
+.dds-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--background-default);
+  border-bottom: var(--border-thin) solid var(--border-default);
+}
+
+.dds-header__brand {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.dds-header__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.dds-header__nav-link {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  transition: color var(--motion-fast);
+}
+
+.dds-header__nav-link:hover,
+.dds-header__nav-link[aria-current="page"] {
+  color: var(--text-primary);
+}
+
+
+/* ---------------------------------------------------------------------------
+   Footer
+   --------------------------------------------------------------------------- */
+
+.dds-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--background-surface);
+  border-top: var(--border-thin) solid var(--border-default);
+  font-size: var(--font-size-small);
+  color: var(--text-secondary);
+}
+
+
+/* =============================================================================
+   PATTERNS
+   Compositions of the components above. Only layout glue lives here — no new
+   visual primitives are introduced.
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   Hero
+   --------------------------------------------------------------------------- */
+
+.dds-hero__title {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.dds-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+
+/* ---------------------------------------------------------------------------
+   Metadata Panel
+   --------------------------------------------------------------------------- */
+
+.dds-metadata-panel__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.dds-metadata-panel__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+
+/* ---------------------------------------------------------------------------
+   Status Card
+   --------------------------------------------------------------------------- */
+
+.dds-status-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.dds-status-card--success {
+  border-left: var(--border-width-thick) solid var(--color-success);
+}
+
+.dds-status-card--warning {
+  border-left: var(--border-width-thick) solid var(--color-warning);
+}
+
+.dds-status-card--error {
+  border-left: var(--border-width-thick) solid var(--color-error);
+}
+
+
+/* ---------------------------------------------------------------------------
+   Diagram Panel
+   --------------------------------------------------------------------------- */
+
+.dds-diagram-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* ---------------------------------------------------------------------------
+   Section Header
+   --------------------------------------------------------------------------- */
+
+.dds-section-header {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ---------------------------------------------------------------------------
+   Dashboard Widget
+   --------------------------------------------------------------------------- */
+
+.dds-dashboard-widget__value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
