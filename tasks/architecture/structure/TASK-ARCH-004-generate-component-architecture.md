@@ -228,4 +228,4 @@ This task represents the **Component level** of the C4 Model.
 
 It refines the Container Architecture by revealing the internal organization of each container while preserving the architectural boundaries established by previous documentation.
 
-The resulting Component Architecture becomes the primary input for behavioral views such as Information Flow, Agent Interaction, and Sequence Architecture.
+The resulting Component Architecture becomes the primary input for behavioral views such as Information Flow, Agent Integration, and Sequence Architecture.

@@ -309,7 +309,7 @@ The following architectural views complement this document:
 * Container View
 * Component View
 * Domain Model View
-* Agent Interaction View
+* Agent Integration View
 * Information Flow View
 * Deployment View
 * Sequence Views

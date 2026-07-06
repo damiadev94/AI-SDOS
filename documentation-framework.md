@@ -1,5 +1,7 @@
 # Documentation Framework
 
+Manifiesto corto del framework externo consumido por este proyecto. Ver [`README.md`](README.md) para la landing page del proyecto y [`tasks/README.md`](tasks/README.md) para cómo las Tasks lo consumen.
+
 Framework:
 
 AI-SDOS-DDS

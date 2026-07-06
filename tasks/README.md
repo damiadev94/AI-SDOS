@@ -127,12 +127,21 @@ tasks/
 ├── templates/
 │   └── task-template.md
 │
-├── diagrams/
+├── architecture/
+│   ├── structure/     (TASK-ARCH-001, 002, 003, 009)
+│   ├── behavior/       (TASK-ARCH-006, 007, 008)
+│   ├── domain/          (TASK-ARCH-005)
+│   ├── decision/        (TASK-ARCH-011)
+│   └── governance/      (TASK-ARCH-010, 012)
 │
-├── documents/
+├── diagrams/     (reservado — Diagram Tasks futuras que no pertenezcan a una categoría existente)
 │
-└── validation/
+├── documents/    (reservado — Documentation Tasks futuras que no pertenezcan a una categoría existente)
+│
+└── validation/   (reservado — Validation Tasks futuras que no pertenezcan a una categoría existente)
 ```
+
+`architecture/` es, por ahora, la única categoría de Tasks del proyecto y se subdivide internamente por sub-dominio arquitectónico (`structure`, `behavior`, `domain`, `decision`, `governance`) en lugar de por tipo de artefacto, porque esa subdivisión refleja mejor las dependencias entre vistas (ver `docs/architecture/architecture-index.md`, sección 5). `diagrams/`, `documents/` y `validation/` quedan reservadas para cuando exista una categoría de Tasks fuera de `architecture/` (por ejemplo, Domain Discovery o Specification) que no amerite su propia subcarpeta por sub-dominio.
 
 ---
 
