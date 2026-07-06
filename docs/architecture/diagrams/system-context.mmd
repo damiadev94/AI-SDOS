@@ -1,0 +1,41 @@
+graph LR
+    %% Human Actors
+    PA["Project Architect"]
+    SE["Software Engineer"]
+    TL["Technical Lead"]
+    PO["Product Owner"]
+    DE["Domain Expert"]
+    QA["QA Engineer"]
+    PM["Project Maintainer"]
+
+    %% External Systems
+    VCS["Version Control\nPlatform"]
+    AIP["AI Providers"]
+    IDE["Development\nEnvironments"]
+    MCP["MCP Servers"]
+    ITS["Issue Tracking\nSystems"]
+    DP["Documentation\nPlatforms"]
+    CICD["CI/CD\nPlatforms"]
+
+    %% AI-SDOS System Boundary
+    subgraph AISDOS["AI-SDOS — AI Engineering Operating System"]
+        CORE["Engineering Knowledge · Orchestration\nSpecifications · Architecture · Governance"]
+    end
+
+    %% Human actor interactions
+    PA -->|"Defines objectives,\napproves decisions"| AISDOS
+    SE -->|"Consumes specs,\nreports progress"| AISDOS
+    TL -->|"Reviews, provides\ntechnical guidance"| AISDOS
+    PO -->|"Provides requirements\nand priorities"| AISDOS
+    DE -->|"Provides domain\nknowledge, validates"| AISDOS
+    QA -->|"Reviews quality,\nvalidates outcomes"| AISDOS
+    PM -->|"Maintains knowledge\nbase, manages lifecycle"| AISDOS
+
+    %% External system interactions
+    AISDOS -->|"Reads history,\npushes artifacts"| VCS
+    AISDOS -->|"Invokes agents\nvia model API"| AIP
+    AISDOS -->|"Delivers context\nand specifications"| IDE
+    AISDOS -->|"Invokes extended\ntool capabilities"| MCP
+    AISDOS -->|"Surfaces tasks\nand decisions"| ITS
+    AISDOS -->|"Publishes finalized\ndocumentation"| DP
+    AISDOS -->|"Triggers validation\npipelines"| CICD

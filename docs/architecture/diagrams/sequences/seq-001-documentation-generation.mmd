@@ -1,0 +1,48 @@
+sequenceDiagram
+    participant PA as Project Architect
+    participant OE as Orchestration Engine
+    participant KR as Knowledge Repository
+    participant AAR as AI Agent Runtime
+    participant TIG as Tool Integration Gateway
+    participant EE as Execution Engine
+    participant GM as Governance Module
+
+    PA->>OE: Submit documentation task instruction
+    OE->>OE: Workflow Engine creates documentation workflow
+    OE->>OE: Task Manager instantiates: Generate → Review → Validate
+    OE->>AAR: Assign Generate task to Documentation Agent
+    AAR->>KR: Read project context (read-only)
+    KR-->>AAR: Foundation, Domain, UL, Project State
+    AAR->>TIG: Invoke AI Provider for generation
+    TIG-->>AAR: Generated document content
+    AAR-->>OE: Draft document artifact produced
+
+    OE->>AAR: Assign Review task to Review Agent
+    AAR->>KR: Read draft + project standards + UL
+    KR-->>AAR: Project knowledge context
+    AAR->>TIG: Invoke AI Provider for review analysis
+    TIG-->>AAR: Review analysis
+    AAR-->>OE: Review report (quality, terminology, completeness)
+
+    OE->>AAR: Assign Validate task to Validation Agent
+    AAR->>KR: Read acceptance criteria
+    KR-->>AAR: Task acceptance criteria
+    AAR-->>OE: Validation result
+
+    OE->>EE: Deliver artifact candidate + review + validation result
+    EE->>EE: Artifact Producer assembles production-ready document
+    EE->>EE: Validation Engine checks acceptance criteria
+    EE->>GM: Submit for governance review
+
+    GM->>GM: Documentation Standards Validator checks DDS compliance
+    GM->>PA: Route to Approval Gate (human decision required)
+    PA-->>GM: Approval decision
+
+    alt Approved
+        GM->>GM: Audit Logger records approval event
+        GM->>KR: Store approved artifact in Documentation Store
+        KR-->>PA: Artifact available in Knowledge Repository
+    else Rejected
+        GM->>OE: Rejection report
+        OE->>PA: Rejection report delivered
+    end

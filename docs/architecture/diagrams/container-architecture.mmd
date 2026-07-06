@@ -1,0 +1,45 @@
+graph LR
+    %% Human actors (external)
+    HU["Human Actors\n(Project Architect, Engineers,\nProduct Owner, Domain Expert…)"]
+
+    %% External systems (external)
+    EXT["External Systems\n(AI Providers · Version Control\nIDEs · MCP Servers · CI/CD\nIssue Tracking · Doc Platforms)"]
+
+    %% AI-SDOS Container Boundary
+    subgraph AISDOS["AI-SDOS"]
+        direction LR
+
+        OR["Orchestration Engine\n─────────────\nCoordinates workflows,\ntask scheduling,\nagent delegation"]
+
+        KR["Knowledge Repository\n─────────────\nStores authoritative\nproject artifacts:\ndocs · specs · ADRs\narchitecture · state"]
+
+        AAR["AI Agent Runtime\n─────────────\nExecutes Specialized Agents:\ndocumentation · architecture\nimplementation · testing\nanalysis · review"]
+
+        TIG["Tool Integration Gateway\n─────────────\nAdapters for external systems:\nAI providers · VCS · IDEs\nMCP servers · CI/CD\nissue tracking · doc platforms"]
+
+        EE["Execution Engine\n─────────────\nValidates artifact candidates\nagainst acceptance criteria;\nproduces approved outputs"]
+
+        GM["Governance Module\n─────────────\n[cross-cutting]\nPolicies · approval gates\nstandards · audit logs\narchitectural consistency"]
+    end
+
+    %% Human actor interaction
+    HU -->|"Defines objectives,\napproves decisions,\nvalidates outcomes"| OR
+    KR -->|"Surfaces artifacts\nfor review"| HU
+
+    %% Container relationships
+    OR -->|"Reads workflow context"| KR
+    OR -->|"Delegates tasks"| AAR
+    OR -->|"Governance gate"| GM
+
+    AAR -->|"Reads project knowledge"| KR
+    AAR -->|"Invokes AI providers\nand MCP tools"| TIG
+    AAR -->|"Delivers artifact\ncandidates"| EE
+
+    EE -->|"Persists approved\nartifacts"| KR
+    EE -->|"Applies validation\npolicies"| GM
+    EE -->|"CI/CD triggers"| TIG
+
+    KR -->|"Governance\nvalidation"| GM
+
+    %% External system interaction
+    TIG -->|"Connects to\nexternal capabilities"| EXT

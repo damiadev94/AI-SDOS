@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item -ItemType Directory -Path \"d:\\\\\\(EMPRENDIMIENTOS\\)\\\\AI-SDOS\\\\docs\\\\architecture\\\\diagrams\\\\sequences\" -Force)"
+    ]
+  }
+}

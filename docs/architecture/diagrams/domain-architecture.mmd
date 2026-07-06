@@ -1,0 +1,60 @@
+graph LR
+    %% ─── Project Context ──────────────────────────────────────────
+    subgraph PC["Project Context"]
+        PROJ["Project\n(Root Aggregate)\nIdentity · Lifecycle\nGovernance · Ownership"]
+        HA["Human Actor\nProject Architect\nSoftware Engineer\nDomain Expert…"]
+    end
+
+    %% ─── Documentation Context ────────────────────────────────────
+    subgraph DC["Documentation Context"]
+        DOC["Documentation\nDocuments · Sections\nRevisions · References"]
+        DOCSVS["Documentation Service\nConsistency · Standards"]
+    end
+
+    %% ─── Specification Context ────────────────────────────────────
+    subgraph SC["Specification Context"]
+        SPEC["Specification\nRequirements · Constraints\nAcceptance Criteria\nDependencies"]
+        SPECSVS["Specification Service\nValidation · Lifecycle"]
+    end
+
+    %% ─── Architecture Context ─────────────────────────────────────
+    subgraph AC["Architecture Context"]
+        AV["Architecture View\nSystem Context · Container\nComponent · Domain\nInfo Flow · Sequences"]
+        ADR["ADR\nDecision · Context\nRationale · Consequences"]
+        ARCHSVS["Architecture Service\nCoherence · Consistency"]
+    end
+
+    %% ─── Orchestration Context ────────────────────────────────────
+    subgraph OC["Orchestration Context"]
+        WF["Workflow\nTasks · Order\nCompletion State"]
+        TASK["Task\nObjective · Inputs\nOutputs · Status"]
+        WFSVS["Workflow Service\nCoordination · Sequencing"]
+        ORCHSVS["Orchestration Service\nAgent Delegation"]
+    end
+
+    %% ─── Execution Context ────────────────────────────────────────
+    subgraph EC["Execution Context"]
+        AGENT["AI Agent\nSpecialized Execution\n(Documentation · Architecture\nImplementation · Testing)"]
+        VALSVS["Validation Service\nAcceptance Criteria\nVerification"]
+    end
+
+    %% ─── Context Relationships ────────────────────────────────────
+    PC -->|"Shared identity\nto all contexts"| DC
+    PC -->|"Shared identity\nto all contexts"| SC
+    PC -->|"Shared identity\nto all contexts"| AC
+    PC -->|"Shared identity\nto all contexts"| OC
+    PC -->|"Shared identity\nto all contexts"| EC
+
+    DC -->|"Documentation artifacts\n(Published Language)"| OC
+    DC -->|"Documentation artifacts\n(Published Language)"| EC
+    DC -->|"Documentation artifacts\n(Published Language)"| AC
+
+    SC -->|"Approved specs\ntrigger workflows\n(Customer/Supplier)"| OC
+
+    AC -->|"Architectural context\n(Published Language)"| OC
+
+    OC -->|"Task assignments\n(Customer/Supplier)"| EC
+
+    EC -->|"Validated docs\n(Conformist)"| DC
+    EC -->|"Validated arch views\n(Conformist)"| AC
+    EC -->|"Completion events"| OC

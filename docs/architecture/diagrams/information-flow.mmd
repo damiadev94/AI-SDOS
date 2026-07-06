@@ -1,0 +1,51 @@
+flowchart LR
+    %% Actors
+    HU(["Human Actor\n(Project Architect\nTechnical Lead\nProduct Owner)"])
+
+    %% Containers
+    OE["Orchestration Engine\nWorkflows · Tasks\nAgent Delegation"]
+    KR[("Knowledge Repository\nDocs · Specs · ADRs\nArchitecture Views\nProject State")]
+    AAR["AI Agent Runtime\nSpecialized Agents\n(Doc · Arch · Impl\nTest · Review · Val)"]
+    TIG["Tool Integration\nGateway\nAI Providers · IDEs\nMCP Servers · CI/CD"]
+    EE["Execution Engine\nArtifact Producer\nValidation Engine"]
+    GM{{"Governance Module\nPolicies · Approval Gates\nStandards · Audit Log"}}
+
+    %% External
+    EXT(["External Systems\nVersion Control\nCI/CD · AI Providers\nDocumentation Platforms"])
+
+    %% ─── Information Flows ─────────────────────────────────────────
+
+    %% 1. Human defines objectives
+    HU -->|"1. Objectives,\napprovals, domain\nknowledge"| OE
+
+    %% 2. Orchestration reads knowledge and creates workflows
+    OE -->|"2. Reads project\nknowledge for\nworkflow context"| KR
+    KR -->|"3. Documentation,\nspecs, architecture\ncontext"| OE
+
+    %% 3. Tasks delegated to agents
+    OE -->|"4. Task assignments\nwith context packages"| AAR
+
+    %% 4. Agents read knowledge and invoke tools
+    KR -->|"5. Full project\nknowledge as\nagent context"| AAR
+    AAR -->|"6. Invokes AI\nproviders and tools"| TIG
+    TIG -->|"7. Connects to\nexternal capabilities"| EXT
+    EXT -->|"8. Tool results,\nmodel responses"| TIG
+    TIG -->|"9. Capabilities\nback to agents"| AAR
+
+    %% 5. Agent outputs go to Execution Engine
+    AAR -->|"10. Artifact\ncandidates"| EE
+
+    %% 6. Execution Engine validates
+    EE -->|"11. Applies\nvalidation policies"| GM
+    EE -->|"12. CI/CD\nvalidation triggers"| TIG
+
+    %% 7. Governance gate
+    GM -->|"13. Approval\nrequest"| HU
+    HU -->|"14. Approval\ndecision"| GM
+
+    %% 8. Approved artifacts persist
+    GM -->|"15. Approved\nartifact signal"| EE
+    EE -->|"16. Persists\nvalidated artifacts"| KR
+
+    %% 9. Knowledge enrichment enables next cycle
+    KR -->|"17. Enriched knowledge\nenables higher-quality\nnext workflows"| OE

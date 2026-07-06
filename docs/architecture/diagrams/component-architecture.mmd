@@ -1,0 +1,89 @@
+graph LR
+    %% ─── Orchestration Engine ───────────────────────────────────
+    subgraph OE["Orchestration Engine"]
+        WFE["Workflow Engine\nManages workflow lifecycle"]
+        TM["Task Manager\nResolves dependencies\nand execution order"]
+        AO["Agent Orchestrator\nAssigns tasks to\nSpecialized Agents"]
+    end
+
+    %% ─── Knowledge Repository ────────────────────────────────────
+    subgraph KR["Knowledge Repository"]
+        PROJ["Project Manager\nProject identity\nand lifecycle state"]
+        DS["Documentation Store\nAll documentation artifacts:\nFoundation · Domain · UL\nDomain Model · Sys Arch · State"]
+        AR["Architecture Repository\nArchitecture views · Diagrams\nADR catalog"]
+    end
+
+    %% ─── AI Agent Runtime ────────────────────────────────────────
+    subgraph AAR["AI Agent Runtime"]
+        DOCAG["Documentation Agent"]
+        ARCHAG["Architecture Agent"]
+        IMPLAG["Implementation Agent"]
+        TESTAG["Testing Agent"]
+        ANALAG["Analysis Agent"]
+        REVAG["Review Agent"]
+        VALAG["Validation Agent"]
+    end
+
+    %% ─── Tool Integration Gateway ────────────────────────────────
+    subgraph TIG["Tool Integration Gateway"]
+        AIP["AI Provider Adapter"]
+        VCA["Version Control Adapter"]
+        IDEA["IDE Adapter"]
+        MCPA["MCP Server Adapter"]
+        ITA["Issue Tracker Adapter"]
+        CICDA["CI/CD Adapter"]
+    end
+
+    %% ─── Execution Engine ────────────────────────────────────────
+    subgraph EE["Execution Engine"]
+        APROD["Artifact Producer\nAssembles production-ready\nartifacts"]
+        VALE["Validation Engine\nVerifies against\nacceptance criteria"]
+    end
+
+    %% ─── Governance Module ───────────────────────────────────────
+    subgraph GM["Governance Module [cross-cutting]"]
+        PE["Policy Enforcer"]
+        DSV["Documentation Standards\nValidator"]
+        AGM["Approval Gate Manager"]
+        AL["Audit Logger"]
+    end
+
+    %% ─── Orchestration Engine internal ───────────────────────────
+    WFE -->|"Creates tasks"| TM
+    TM -->|"Submits ready tasks"| AO
+
+    %% ─── Knowledge Repository internal ──────────────────────────
+    PROJ --- DS
+    DS --- AR
+
+    %% ─── AI Agent Runtime internal ───────────────────────────────
+    REVAG -->|"Quality review"| VALAG
+    DOCAG --> VALAG
+    ARCHAG --> VALAG
+    IMPLAG --> VALAG
+    TESTAG --> VALAG
+    ANALAG --> VALAG
+
+    %% ─── Execution Engine internal ───────────────────────────────
+    APROD -->|"Submit for validation"| VALE
+
+    %% ─── Governance Module internal ──────────────────────────────
+    PE --> DSV
+    PE --> AGM
+    PE --> AL
+    AGM --> AL
+
+    %% ─── Cross-container flows ───────────────────────────────────
+    AO -->|"Delegates tasks"| AAR
+    OE -->|"Reads workflow\ncontext"| KR
+
+    AAR -->|"Reads project\nknowledge"| KR
+    AAR -->|"Invokes AI\nand tools"| TIG
+    AAR -->|"Delivers raw\nartifacts"| APROD
+
+    VALE -->|"Persists approved\nartifacts"| KR
+    VALE -->|"CI/CD validation"| CICDA
+    VALE -->|"Applies policies"| GM
+
+    KR -->|"Validates before\nstorage"| GM
+    OE -->|"Governance gate"| GM

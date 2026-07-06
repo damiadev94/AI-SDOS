@@ -1,0 +1,44 @@
+sequenceDiagram
+    participant TM as Task Manager
+    participant AO as Agent Orchestrator
+    participant AG as Specialized Agent
+    participant KR as Knowledge Repository
+    participant TIG as Tool Integration Gateway
+    participant EE as Execution Engine
+    participant GM as Governance Module
+
+    TM->>TM: Marks task as ready (dependencies resolved)
+    TM->>AO: Ready task available for assignment
+    AO->>AO: Selects appropriate Specialized Agent for task type
+    AO->>AG: Task assignment + context references
+    AG->>KR: Read required artifacts (read-only)
+    KR-->>AG: Foundational docs, specs, architecture views, UL
+
+    AG->>TIG: Send inference request to AI Provider
+    TIG-->>AG: AI model response
+
+    opt MCP tools required
+        AG->>TIG: Invoke MCP Server for extended capabilities
+        TIG-->>AG: Tool results
+    end
+
+    AG->>EE: Deliver artifact candidate
+    EE->>EE: Artifact Producer assembles production-ready artifact
+    EE->>EE: Validation Engine checks acceptance criteria
+
+    alt Validation fails
+        EE->>AO: Rejection report
+        AO->>TM: Update task state to Failed
+        TM->>TM: May re-queue or mark permanently failed
+    else Validation passes
+        EE->>GM: Submit artifact for governance
+        GM->>GM: Apply policies and standards
+        opt Human approval required
+            GM->>GM: Approval Gate Manager routes to human actor
+            Note over GM: Human actor approves or rejects
+        end
+        GM->>KR: Persist approved artifact
+        GM->>GM: Audit Logger records state change
+        GM->>TM: Task Completed signal
+        TM->>TM: Mark task Completed; unblock dependent tasks
+    end

@@ -1,0 +1,46 @@
+sequenceDiagram
+    participant TL as Technical Lead / Project Architect
+    participant OE as Orchestration Engine
+    participant KR as Knowledge Repository
+    participant AAR as AI Agent Runtime
+    participant TIG as Tool Integration Gateway
+    participant EE as Execution Engine
+    participant GM as Governance Module
+
+    TL->>OE: Define specification scope and submit request
+    OE->>OE: Workflow Engine creates specification workflow
+    OE->>OE: Task Manager instantiates: Generate Spec → Review → Validate → Approve
+    OE->>AAR: Assign Generate task to Documentation Agent
+    AAR->>KR: Read architecture context, domain model, UL
+    KR-->>AAR: Architectural views, domain model, ubiquitous language
+    AAR->>TIG: Invoke AI Provider for specification drafting
+    TIG-->>AAR: Draft specification content
+    AAR-->>OE: Draft specification artifact
+
+    OE->>AAR: Assign Review task to Review Agent
+    AAR->>KR: Read draft + architecture + acceptance criteria standards
+    KR-->>AAR: Consistency context
+    AAR->>TIG: Invoke AI Provider for specification review
+    TIG-->>AAR: Review findings
+    AAR-->>OE: Review report (completeness, unambiguous AC, architecture alignment)
+
+    OE->>AAR: Assign Validate task to Validation Agent
+    AAR-->>OE: Validation result
+
+    OE->>EE: Deliver specification candidate
+    EE->>EE: Validation Engine: structure, AC completeness, consistency
+    EE->>GM: Submit for governance
+
+    GM->>GM: Documentation Standards Validator: specification structure compliance
+    Note over GM: Specification approval is mandatory —<br/>specifications drive implementation
+    GM->>TL: Route to formal Approval Gate
+    TL-->>GM: Approval decision
+
+    alt Approved
+        GM->>GM: Audit Logger records formal approval
+        GM->>KR: Persist approved specification to Documentation Store
+        KR-->>OE: Specification available — implementation workflows may be triggered
+    else Rejected
+        GM->>OE: Rejection report with findings
+        OE->>TL: Rejection report delivered
+    end

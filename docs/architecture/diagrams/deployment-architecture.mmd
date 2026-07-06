@@ -1,0 +1,61 @@
+graph LR
+    %% ─── Platform Environment ─────────────────────────────────────
+    subgraph PE["Platform Environment"]
+        direction TB
+        OE["Orchestration Engine\nWorkflow state · Task state"]
+        KR[("Knowledge Repository\nAll project artifacts\n(persistent storage)")]
+        EE["Execution Engine\nValidation records"]
+        GM["Governance Module\nPolicies · Audit logs\nApproval records"]
+    end
+
+    %% ─── Agent Execution Environment ─────────────────────────────
+    subgraph AEE["Agent Execution Environment"]
+        AAR["AI Agent Runtime\nStateless agent execution\nDocumentation · Architecture\nImplementation · Testing\nAnalysis · Review · Validation"]
+    end
+
+    %% ─── Integration Environment ──────────────────────────────────
+    subgraph IE["Integration Environment\n(Single external boundary)"]
+        TIG["Tool Integration Gateway\nAdapters for all external systems"]
+    end
+
+    %% ─── External Systems ─────────────────────────────────────────
+    subgraph EXT["External Systems"]
+        direction TB
+        AIP(["AI Providers\n(LLM inference)"])
+        VCS(["Version Control\nPlatform"])
+        MCP(["MCP Servers"])
+        IDE(["Development\nEnvironments"])
+        ITS(["Issue Tracking\nSystems"])
+        CICD(["CI/CD Platforms"])
+        DP(["Documentation\nPlatforms"])
+    end
+
+    %% ─── Human Actors ─────────────────────────────────────────────
+    HU(["Human Actors\n(Approval gates)"])
+
+    %% ─── Internal connections ─────────────────────────────────────
+    OE -->|"Reads knowledge"| KR
+    OE -->|"Delegates tasks"| AAR
+    AAR -->|"Delivers artifacts"| EE
+    EE -->|"Validates policies"| GM
+    EE -->|"Persists approved"| KR
+    GM -->|"Cross-cutting\ngovernance"| OE
+    GM -->|"Cross-cutting\ngovernance"| EE
+    GM -->|"Cross-cutting\ngovernance"| KR
+
+    %% ─── Agent to Integration ─────────────────────────────────────
+    AAR -->|"AI inference,\ntool invocations"| TIG
+    EE -->|"CI/CD triggers"| TIG
+
+    %% ─── Integration to External ──────────────────────────────────
+    TIG --> AIP
+    TIG --> VCS
+    TIG --> MCP
+    TIG --> IDE
+    TIG --> ITS
+    TIG --> CICD
+    TIG --> DP
+
+    %% ─── Human approval ───────────────────────────────────────────
+    GM -->|"Approval gates\n(strategic artifacts)"| HU
+    HU -->|"Approval decisions"| GM

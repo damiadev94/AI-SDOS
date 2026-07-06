@@ -1,0 +1,83 @@
+graph LR
+    %% ─── Agent Orchestrator (Orchestration Engine) ───────────────
+    AO["Agent Orchestrator\n(Orchestration Engine)\nSelects agent · Packages task\nDelivers assignment"]
+
+    %% ─── Knowledge Repository ────────────────────────────────────
+    KR[("Knowledge Repository\nFoundation · Domain · UL\nDomain Model · Sys Arch\nArchitecture Views · Specs")]
+
+    %% ─── AI Agent Runtime ────────────────────────────────────────
+    subgraph AAR["AI Agent Runtime"]
+        direction TB
+        DOCAG["Documentation Agent"]
+        ARCHAG["Architecture Agent"]
+        IMPLAG["Implementation Agent"]
+        TESTAG["Testing Agent"]
+        ANALAG["Analysis Agent"]
+        REVAG["Review Agent"]
+        VALAG["Validation Agent"]
+    end
+
+    %% ─── Tool Integration Gateway ────────────────────────────────
+    subgraph TIG["Tool Integration Gateway"]
+        direction TB
+        AIP["AI Provider Adapter"]
+        MCPA["MCP Server Adapter"]
+        IDEA["IDE Adapter"]
+        CICDA["CI/CD Adapter"]
+    end
+
+    %% ─── External ────────────────────────────────────────────────
+    AIP2(["AI Providers\n(LLM inference)"])
+    MCPEXT(["MCP Servers\n(extended tools)"])
+    IDEEXT(["IDEs"])
+    CICDEXT(["CI/CD Platforms"])
+
+    %% ─── Execution Engine ────────────────────────────────────────
+    APROD["Artifact Producer\n(Execution Engine)"]
+    VALE["Validation Engine\n(Execution Engine)"]
+
+    %% ─── Governance Module ───────────────────────────────────────
+    GM{{"Governance Module\nStandards · Approval Gate\nAudit Logger"}}
+
+    %% ─── Human Actor ─────────────────────────────────────────────
+    HU(["Human Actor\n(Project Architect)"])
+
+    %% ─── Final Knowledge Repository ──────────────────────────────
+    KRout[("Knowledge Repository\nApproved Artifacts\nStored as Authoritative\nProject Knowledge")]
+
+    %% ─── Flows ───────────────────────────────────────────────────
+
+    %% Assignment
+    AO -->|"1. Task assignment\nwith context reference"| AAR
+
+    %% Context consumption (read-only)
+    KR -->|"2. Read-only project\nknowledge context"| AAR
+
+    %% Tool invocation
+    AAR -->|"3. Invokes AI model,\ntools, and adapters"| TIG
+    TIG --> AIP2
+    TIG --> MCPEXT
+    TIG --> IDEEXT
+    TIG --> CICDEXT
+    AIP2 -->|"LLM responses"| TIG
+    MCPEXT -->|"Tool results"| TIG
+    TIG -->|"4. Results back\nto agents"| AAR
+
+    %% Internal agent collaboration
+    DOCAG -->|"Draft → Review"| REVAG
+    ARCHAG -->|"Draft → Review"| REVAG
+    IMPLAG -->|"Draft → Review"| REVAG
+    TESTAG -->|"Draft → Review"| REVAG
+    ANALAG -->|"Analysis → Generation\ncontext"| DOCAG
+    REVAG -->|"Review report"| VALAG
+
+    %% Output lifecycle
+    VALAG -->|"5. Validated artifact\ncandidate"| APROD
+    APROD -->|"6. Assembled artifact"| VALE
+    VALE -->|"7. Applies policies"| GM
+    VALE -->|"CI/CD check"| CICDA
+    CICDA -->|"Automated test\nresults"| VALE
+    GM -->|"8. Approval gate\n(strategic artifacts)"| HU
+    HU -->|"9. Approval decision"| GM
+    GM -->|"10. Approved signal"| VALE
+    VALE -->|"11. Persists approved\nartifact"| KRout

@@ -1,0 +1,48 @@
+sequenceDiagram
+    participant PA as Project Architect
+    participant OE as Orchestration Engine
+    participant KR as Knowledge Repository
+    participant AAR as AI Agent Runtime
+    participant TIG as Tool Integration Gateway
+    participant EE as Execution Engine
+    participant GM as Governance Module
+
+    PA->>OE: Request architecture view generation (e.g., System Context)
+    OE->>OE: Workflow Engine creates architecture workflow
+    OE->>OE: Task Manager verifies prerequisite views exist
+    OE->>AAR: Assign Generate task to Architecture Agent
+    AAR->>KR: Read foundational docs + all prerequisite architecture views
+    KR-->>AAR: Foundation, Domain, UL, Domain Model, Sys Arch, prior views
+    AAR->>TIG: Invoke AI Provider for view and diagram generation
+    TIG-->>AAR: Architecture view content and Mermaid diagram
+    AAR-->>OE: Draft .md document + .mmd diagram
+
+    OE->>AAR: Assign Review task to Review Agent
+    AAR->>KR: Read draft + existing views + UL for consistency review
+    KR-->>AAR: Context for consistency check
+    AAR->>TIG: Invoke AI Provider for review
+    TIG-->>AAR: Review analysis
+    AAR-->>OE: Consistency and quality review report
+
+    OE->>AAR: Assign Validate task to Validation Agent
+    AAR->>KR: Read task acceptance criteria
+    KR-->>AAR: Acceptance criteria (from task definition)
+    AAR-->>OE: Validation result
+
+    OE->>EE: Deliver .md + .mmd + review + validation result
+    EE->>EE: Artifact Producer assembles both files
+    EE->>EE: Validation Engine: completeness, no implementation details, UL consistency
+    EE->>GM: Submit for governance
+
+    GM->>GM: Architectural consistency check against existing views
+    GM->>PA: Route to Approval Gate
+    PA-->>GM: Approval decision
+
+    alt Approved
+        GM->>GM: Audit Logger records event
+        GM->>KR: Store view in Architecture Repository
+        KR-->>OE: New view available for dependent tasks
+    else Rejected
+        GM->>OE: Rejection report
+        OE->>PA: Report delivered
+    end
